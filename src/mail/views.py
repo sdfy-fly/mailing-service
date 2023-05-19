@@ -4,8 +4,9 @@ from django.db.models import Count
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
-from src.mail.models import Mailing
-from src.mail.serializer import MailingSerializer
+from .models import Mailing
+from .serializer import MailingSerializer
+from .tasks import hello
 from src.message.models import Message
 from src.message.serializer import MessageSerializer
 
@@ -19,6 +20,7 @@ class MailingView(ModelViewSet):
         # TODO: асинхронно вызывать задачу celery
 
     def retrieve(self, request, *args, **kwargs):
+        hello.delay()
         return super().retrieve(request, *args, **kwargs)
 
     def update(self, request, *args, **kwargs):
