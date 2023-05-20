@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'src.client.apps.ClientConfig',
     'src.mail.apps.MailConfig',
     'src.message.apps.MessageConfig',
-    'rest_framework'
+
+    'rest_framework',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
